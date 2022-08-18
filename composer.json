@@ -1,0 +1,11 @@
+{
+    "name": "z3y4d/www",
+    
+    "autoload": {
+        "psr-4": { "app\\": "app/" },
+        "files": ["app/core/classes/helpers.php"]
+    },
+    "require": {
+        "phpmailer/phpmailer": "~6"
+    }
+}

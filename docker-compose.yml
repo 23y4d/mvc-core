@@ -1,0 +1,35 @@
+version: "3.7"
+
+services:
+  php:
+    build: ./docker
+    image: php
+    container_name: mvc0.2
+    ports:
+      - "8003:80"
+    volumes:
+      - ./:/var/mvc-0.2
+    extra_hosts:
+    - host.docker.internal:host-gateway
+  db:
+    image: mysql:8
+    ports:
+      - "3302:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mvc
+      MYSQL_USER: mvc
+      MYSQL_PASSWORD: mvc
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 1333:80
+    environment:
+      - PMA_HOST:db
+
+volumes:
+  mysql-data:
